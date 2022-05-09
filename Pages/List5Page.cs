@@ -1,6 +1,6 @@
 ﻿using Microsoft.Maui.Layouts;
 
-namespace TabbedListViewTester
+namespace TabbedListViewTester.Pages
 {
     public class List5Page : ContentPage
     {
@@ -11,13 +11,13 @@ namespace TabbedListViewTester
 
             #region *// Buttons
             var addButton = new Button { Text = "Add", Margin = 5 };
-            addButton.Clicked += (s, e) => {  };
+            addButton.Clicked += (s, e) => { };
 
             var editButton = new Button { Text = "Edit", Margin = 5 };
-            editButton.Clicked += (s, e) => {  };
+            editButton.Clicked += (s, e) => { };
 
             var deleteButton = new Button { Text = "Delete", Margin = 5 };
-            deleteButton.Clicked += (s, e) => {  };
+            deleteButton.Clicked += (s, e) => { };
 
             var actionButtonsGrid = new Grid();
             actionButtonsGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -48,7 +48,7 @@ namespace TabbedListViewTester
             var layout = new VerticalStackLayout { Children = { actionButtonsGrid, listView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
 
 
-            Title = "List5";
+            Title = "L5";
             Content = layout;
         }
 

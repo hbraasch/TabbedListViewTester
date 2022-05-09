@@ -1,23 +1,23 @@
 ﻿using Microsoft.Maui.Layouts;
 
-namespace TabbedListViewTester
+namespace TabbedListViewTester.Pages
 {
-    public class List2Page : ContentPage
+    public class List1Page : ContentPage
     {
 
-        public List2Page(StartupPageModel viewModel)
+        public List1Page(StartupPageModel viewModel)
         {
             BindingContext = viewModel;
 
             #region *// Buttons
             var addButton = new Button { Text = "Add", Margin = 5 };
-            addButton.Clicked += (s, e) => {  };
+            addButton.Clicked += (s, e) => { viewModel.OnList1AddPressed.Execute(null); };
 
             var editButton = new Button { Text = "Edit", Margin = 5 };
-            editButton.Clicked += (s, e) => {  };
+            editButton.Clicked += (s, e) => { };
 
             var deleteButton = new Button { Text = "Delete", Margin = 5 };
-            deleteButton.Clicked += (s, e) => {  };
+            deleteButton.Clicked += (s, e) => { };
 
             var actionButtonsGrid = new Grid();
             actionButtonsGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -42,13 +42,13 @@ namespace TabbedListViewTester
             };
 
             listView.ItemTemplate = new DataTemplate(() => { return new ListViewDataTemplate(); });
-            listView.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List2DisplayItems), BindingMode.OneWay));
+            listView.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List1DisplayItems), BindingMode.OneWay));
             #endregion
 
             var layout = new VerticalStackLayout { Children = { actionButtonsGrid, listView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
 
 
-            Title = "List2";
+            Title = "ListView";
             Content = layout;
         }
 

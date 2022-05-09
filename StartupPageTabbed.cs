@@ -1,4 +1,6 @@
 ﻿
+using TabbedListViewTester.Pages;
+
 namespace TabbedListViewTester
 {
     internal class StartupPageTabbed : TabbedPage
@@ -9,7 +11,7 @@ namespace TabbedListViewTester
             this.viewModel = viewModel;
 
             Children.Add(new List1Page(viewModel));
-            Children.Add(new List2Page(viewModel));
+            Children.Add(new CollectionViewPage(viewModel));
             Children.Add(new List3Page(viewModel));
             Children.Add(new List4Page(viewModel));
             Children.Add(new List5Page(viewModel));

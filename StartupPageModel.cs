@@ -66,5 +66,13 @@ namespace TabbedListViewTester
             list = list.OrderBy(o => o.Name).ToList();
             List1DisplayItems = new ObservableCollection<DisplayData>(list);
         });
+
+        public ICommand OnCollectionViewAddPressed => new Command(() =>
+        {
+            var list = List2DisplayItems.ToList();
+            list.Add(new DisplayData { Name = "Added item" });
+            list = list.OrderBy(o => o.Name).ToList();
+            List2DisplayItems = new ObservableCollection<DisplayData>(list);
+        });
     }
 }

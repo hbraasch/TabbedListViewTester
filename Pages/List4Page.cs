@@ -1,23 +1,23 @@
 ﻿using Microsoft.Maui.Layouts;
 
-namespace TabbedListViewTester
+namespace TabbedListViewTester.Pages
 {
-    public class List1Page : ContentPage
+    public class List4Page : ContentPage
     {
 
-        public List1Page(StartupPageModel viewModel)
+        public List4Page(StartupPageModel viewModel)
         {
             BindingContext = viewModel;
 
             #region *// Buttons
             var addButton = new Button { Text = "Add", Margin = 5 };
-            addButton.Clicked += (s, e) => { viewModel.OnList1AddPressed.Execute(null); };
+            addButton.Clicked += (s, e) => { };
 
             var editButton = new Button { Text = "Edit", Margin = 5 };
-            editButton.Clicked += (s, e) => {  };
+            editButton.Clicked += (s, e) => { };
 
             var deleteButton = new Button { Text = "Delete", Margin = 5 };
-            deleteButton.Clicked += (s, e) => {  };
+            deleteButton.Clicked += (s, e) => { };
 
             var actionButtonsGrid = new Grid();
             actionButtonsGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
@@ -31,7 +31,7 @@ namespace TabbedListViewTester
             #endregion
 
             #region *// List
-            var listView = new ListView() 
+            var listView = new ListView()
             {
                 SelectionMode = ListViewSelectionMode.Single,
                 HasUnevenRows = false,
@@ -42,13 +42,13 @@ namespace TabbedListViewTester
             };
 
             listView.ItemTemplate = new DataTemplate(() => { return new ListViewDataTemplate(); });
-            listView.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List1DisplayItems), BindingMode.OneWay));
+            listView.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List4DisplayItems), BindingMode.OneWay));
             #endregion
 
             var layout = new VerticalStackLayout { Children = { actionButtonsGrid, listView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
 
 
-            Title = "List1";
+            Title = "L4";
             Content = layout;
         }
 
