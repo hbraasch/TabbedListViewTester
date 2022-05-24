@@ -2,10 +2,10 @@
 
 namespace TabbedListViewTester.Pages
 {
-    public class CollectionViewPage : ContentPage
+    public class JustCollectionViewPage : ContentPage
     {
         StartupPageModel viewModel;
-        public CollectionViewPage(StartupPageModel viewModel)
+        public JustCollectionViewPage(StartupPageModel viewModel)
         {
             this.viewModel = viewModel;
             BindingContext = viewModel;
@@ -70,6 +70,12 @@ namespace TabbedListViewTester.Pages
         private void CollectionView_RemainingItemsThresholdReached(object sender, EventArgs e)
         {
             viewModel.GetNextItems(10);
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            viewModel.ViewIsFirstAppearing.Execute(null);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace TabbedListViewTester;
+﻿using TabbedListViewTester.Pages;
+
+namespace TabbedListViewTester;
 
 public partial class App : Application
 {
@@ -7,5 +9,7 @@ public partial class App : Application
 		InitializeComponent();
 
 		MainPage = new NavigationPage(new StartupPageTabbed(new StartupPageModel())) { BarBackgroundColor = Colors.LightGray, BarTextColor = Colors.Black };
-	}
+
+        // MainPage = new NavigationPage(new JustCollectionViewPage(new StartupPageModel())) { BarBackgroundColor = Colors.LightGray, BarTextColor = Colors.Black };
+    }
 }

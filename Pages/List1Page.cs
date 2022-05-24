@@ -47,9 +47,18 @@ namespace TabbedListViewTester.Pages
 
             var layout = new VerticalStackLayout { Children = { actionButtonsGrid, listView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
 
+            var layoutGrid = new Grid();
+            layoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            layoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Star) });
+            layoutGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            layoutGrid.Add(actionButtonsGrid, 0, 0);
+            layoutGrid.Add(listView, 0, 1);
 
             Title = "ListView";
-            Content = layout;
+            Content = layoutGrid;
+
+            ToolbarItems.Add(new ToolbarItem("Add", "", () => { viewModel.OnList1AddPressed.Execute(null); }, ToolbarItemOrder.Primary));
         }
 
 

@@ -43,7 +43,7 @@ namespace TabbedListViewTester
             var list4 = new List<DisplayData>();
             var list5 = new List<DisplayData>();
 
-            for (int i = 0; i < 400; i++)
+            for (int i = 0; i < 100; i++)
             {
                 list1.Add(new DisplayData() { Name = $"List 1 item {i}" });
                 list2.Add(new DisplayData() { Name = $"List 2 item {i}" });
@@ -74,5 +74,13 @@ namespace TabbedListViewTester
             list = list.OrderBy(o => o.Name).ToList();
             List2DisplayItems = new ObservableCollection<DisplayData>(list);
         });
+
+        internal void GetNextItems(int amount)
+        {
+            for (int i = 0; i < amount; i++)
+            {
+                List2DisplayItems.Add(new DisplayData() { Name = $"List 2 item {i}" });
+            }
+        }
     }
 }
