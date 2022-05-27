@@ -41,11 +41,23 @@ namespace TabbedListViewTester.Pages
                 Margin = 5
             };
 
-            listView.ItemTemplate = new DataTemplate(() => { return new ListViewDataTemplate(); });
+            listView.ItemTemplate = new DataTemplate(() =>
+            {
+                var nameLabel = new Label { VerticalTextAlignment = TextAlignment.Center, TextColor = Colors.Black };
+                nameLabel.SetBinding(Label.TextProperty, new Binding(nameof(StartupPageModel.DisplayData.Name), BindingMode.TwoWay));
+
+#if false
+                // This works
+                var layoutGrid = new Grid();
+                layoutGrid.Add(nameLabel);
+                return new ViewCell { View = layoutGrid };
+#else
+                // This crash when scrolling
+                return new ViewCell { View = nameLabel };
+#endif
+            });
             listView.SetBinding(ListView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List1DisplayItems), BindingMode.OneWay));
             #endregion
-
-            var layout = new VerticalStackLayout { Children = { actionButtonsGrid, listView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
 
             var layoutGrid = new Grid();
             layoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
@@ -61,20 +73,5 @@ namespace TabbedListViewTester.Pages
             ToolbarItems.Add(new ToolbarItem("Add", "", () => { viewModel.OnList1AddPressed.Execute(null); }, ToolbarItemOrder.Primary));
         }
 
-
-        public class ListViewDataTemplate : ViewCell
-        {
-
-            public ListViewDataTemplate()
-            {
-
-                var nameLabel = new Label { VerticalTextAlignment = TextAlignment.Center, TextColor = Colors.Black };
-                nameLabel.SetBinding(Label.TextProperty, new Binding(nameof(StartupPageModel.DisplayData.Name), BindingMode.TwoWay));
-
-                View = nameLabel;
-
-            }
-
-        }
     }
 }

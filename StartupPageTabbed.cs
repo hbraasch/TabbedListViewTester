@@ -12,9 +12,6 @@ namespace TabbedListViewTester
 
             Children.Add(new List1Page(viewModel));
             Children.Add(new CollectionViewPage(viewModel));
-            Children.Add(new List3Page(viewModel));
-            Children.Add(new List4Page(viewModel));
-            Children.Add(new List5Page(viewModel));
 
             Title = "StartupPage";
 

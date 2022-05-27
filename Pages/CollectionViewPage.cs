@@ -44,27 +44,26 @@ namespace TabbedListViewTester.Pages
                 var nameLabel = new Label { VerticalTextAlignment = TextAlignment.Center, TextColor = Colors.Black };
                 nameLabel.SetBinding(Label.TextProperty, new Binding(nameof(StartupPageModel.DisplayData.Name), BindingMode.TwoWay));
 
-                var seperator = new BoxView { HeightRequest = 1, BackgroundColor = Colors.Black };
+                var layoutGrid = new Grid();
+                layoutGrid.Add(nameLabel);
 
-                Grid grid = new Grid { Padding = 10 };
-                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                grid.RowDefinitions.Add(new RowDefinition { Height = GridLength.Auto });
-                grid.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Star });
-                grid.Add(nameLabel, 0, 0);
-                grid.Add(seperator, 0, 1);
-
-                return nameLabel;
+                return layoutGrid;
             });
             collectionView.SetBinding(ItemsView.ItemsSourceProperty, new Binding(nameof(StartupPageModel.List2DisplayItems), BindingMode.OneWay));
             collectionView.RemainingItemsThreshold = 10;
             collectionView.RemainingItemsThresholdReached += CollectionView_RemainingItemsThresholdReached;
             #endregion
 
-            var layout = new VerticalStackLayout { Children = { actionButtonsGrid, collectionView }, VerticalOptions = LayoutOptions.Start, HorizontalOptions = LayoutOptions.Center, Padding = 20 };
+            var layoutGrid = new Grid();
+            layoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(1, GridUnitType.Auto) });
+            layoutGrid.RowDefinitions.Add(new RowDefinition { Height = new GridLength(200, GridUnitType.Absolute) });
+            layoutGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
+            layoutGrid.Add(actionButtonsGrid, 0, 0);
+            layoutGrid.Add(collectionView, 0, 1);
 
             Title = "CollectView";
-            Content = collectionView;
+            Content = layoutGrid;
         }
 
         private void CollectionView_RemainingItemsThresholdReached(object sender, EventArgs e)
